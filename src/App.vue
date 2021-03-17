@@ -1,13 +1,20 @@
 <template>
   <div id="app">
+    <!-- 路由入口 -->
     <router-view />
-    <h1>黑马头条</h1>
   </div>
 </template>
+
 <script>
 export default {
-  name: 'APP'
+  name: 'APP',
+  data () {
+    return {}
+  },
+  created () {},
+  methods: {}
 }
 </script>
-<style lang="less">
+
+<style scoped lang="less">
 </style>

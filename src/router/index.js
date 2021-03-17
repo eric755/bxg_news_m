@@ -3,10 +3,22 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = []
+const routes = [{
+        path: '/',
+        name: 'honme',
+        component: () =>
+            import ('@/views/home')
+    },
+    {
+        path: '/search',
+        name: 'search',
+        component: () =>
+            import ('@/views/search')
+    }
+]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router
