@@ -18,39 +18,45 @@
 </template>
 
 <script>
-import { getNewsTop } from '@/api/index'
-import ArticleItem from '@/components/article_item/index'
+import { getNewsTop } from "@/api/index";
+import ArticleItem from "@/components/article_item/index";
 export default {
-  name: 'toplist',
+  name: "toplist",
   components: {
-    ArticleItem
+    ArticleItem,
   },
-  data () {
+  props: {
+    url: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
     return {
       list: [],
       loading: false,
       finished: false,
-      error: false
-    }
+      error: false,
+    };
   },
   methods: {
-    async onLoad () {
+    async onLoad() {
       try {
-        const { data } = await getNewsTop()
+        const { data } = await getNewsTop(this.url);
         // if (Math.random() > 0.5) {
         //   JSON.parse('dsfcsdfsdf')
         // }
-        this.list.push(...data)
-        this.loading = false
-        this.finished = true
+        this.list.push(...data);
+        this.loading = false;
+        this.finished = true;
       } catch (err) {
-        this.error = true
-        this.loading = false
-        this.$toast('获取头条数据失败')
+        this.error = true;
+        this.loading = false;
+        this.$toast("获取头条数据失败");
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped lang="less">

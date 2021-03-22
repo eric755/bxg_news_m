@@ -18,26 +18,8 @@
       animated
       swipeable
     >
-      <van-tab title="头条">
-        <top-list />
-      </van-tab>
-      <van-tab title="社会">
-        <shehui-list />
-      </van-tab>
-      <van-tab title="国内">
-        <guonei-list />
-      </van-tab>
-      <van-tab title="国际">
-        <guoji-list />
-      </van-tab>
-      <van-tab title="娱乐">
-        <yul-list />
-      </van-tab>
-      <van-tab title="体育">
-        <tiyu-list />
-      </van-tab>
-      <van-tab title="科技">
-        <keji-list />
+      <van-tab v-for="(item, id) in list" :key="id" :title="item.name">
+        <top-list :url="item.url" />
       </van-tab>
     </van-tabs>
     <!-- /导航栏滚动切换 -->
@@ -45,63 +27,59 @@
 </template>
 
 <script>
-import TopList from '@/views/compoments/top_list'
-import ShehuiList from '@/views/compoments/shehui_list'
-import GuoneiList from '@/views/compoments/guonei_list'
-import GuojiList from '@/views/compoments/guoji_list'
-import YulList from '@/views/compoments/yul_list'
-import TiyuList from '@/views/compoments/tiyu_list'
-import kejiList from '@/views/compoments/keji_list'
+import TopList from "@/views/compoments/top_list"
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    TopList,
-    ShehuiList,
-    GuoneiList,
-    GuojiList,
-    YulList,
-    TiyuList,
-    kejiList
+    TopList
   },
-  data () {
+  data() {
     return {
       active: 0,
-      select_color: '#43a4fc',
-      unselect_color: '#727272'
-    }
+      select_color: "#43a4fc",
+      unselect_color: "#727272",
+      list: [
+        { id: 1, name: "头条", url: "top" },
+        { id: 2, name: "社会", url: "shehui" },
+        { id: 3, name: "国内", url: "guonei" },
+        { id: 4, name: "国际", url: "guoji" },
+        { id: 5, name: "娱乐", url: "yule" },
+        { id: 6, name: "体育", url: "tiyu" },
+        { id: 7, name: "科技", url: "keji" },
+      ],
+    };
   },
-  created () {},
+  created() {},
   methods: {
-    search_btn(){
-      this.$router.replace('/search')
-    }
-  }
-}
+    search_btn() {
+      this.$router.replace("/search");
+    },
+  },
+};
 </script>
 
 <style scoped lang="less">
-.home{
-    background-color: #f4f5f6;
-    .page-nav-bar {
-  img {
-    height: 26px;
+.home {
+  background-color: #f4f5f6;
+  .page-nav-bar {
+    img {
+      height: 26px;
+    }
+    i.xw {
+      font-size: 26px;
+      color: #43a4fc;
+    }
   }
-  i.xw {
-    font-size: 26px;
-    color: #43a4fc;
+  /deep/ .navigation_bar {
+    .van-tab {
+      width: 23%;
+    }
+    .van-tabs__nav {
+      background: #f4f5f6;
+    }
+    .van-tabs__line {
+      background-color: #466de2;
+    }
   }
 }
-/deep/ .navigation_bar {
-  .van-tab{
-    width: 23%;
-  }
-  .van-tabs__nav {
-    background: #f4f5f6;
-  }
-  .van-tabs__line {
-    background-color: #466de2;
-  }
-}
-}
-
 </style>
